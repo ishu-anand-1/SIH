@@ -19,16 +19,23 @@ logger = logging.getLogger(__name__)
 # TESSERACT CONFIGURATION
 # ============================================================
 
-TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# Tesseract configuration
+# Local Windows can use the standard installation path.
+# Render/Linux can use the `tesseract` executable from PATH.
 
-if os.path.isfile(TESSERACT_PATH):
+TESSERACT_PATH = os.getenv("TESSERACT_CMD")
+
+if TESSERACT_PATH and os.path.isfile(TESSERACT_PATH):
     pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
-    logger.info("Tesseract configured: %s", TESSERACT_PATH)
-else:
-    logger.warning(
-        "Tesseract executable not found at: %s",
-        TESSERACT_PATH,
+    logger.info("Tesseract configured from TESSERACT_CMD: %s", TESSERACT_PATH)
+elif os.path.isfile(r"C:\Program Files\Tesseract-OCR\tesseract.exe"):
+    pytesseract.pytesseract.tesseract_cmd = (
+        r"C:\Program Files\Tesseract-OCR\tesseract.exe"
     )
+    logger.info("Tesseract configured from Windows default path.")
+else:
+    # On Linux/Render, pytesseract will look for `tesseract` on PATH.
+    logger.info("Using Tesseract executable from system PATH.")
 
 
 def _tesseract_available() -> bool:
