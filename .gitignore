@@ -1,0 +1,16 @@
+
+# Local backups
+metrologyx-backups/
+
+# Explicit frontend dependencies
+apps/web/node_modules/
+apps/*/node_modules/
+
+# Explicit frontend dependencies
+apps/web/node_modules/
+apps/*/node_modules/
+
+# Local backup files
+*.backup
+*.backup_*
+*.before-*

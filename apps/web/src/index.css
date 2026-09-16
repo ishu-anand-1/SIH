@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F7F9FC;
+    --surface: #FFFFFF;
+    --surface-subtle: #F2F5F9;
+    --surface-hover: #EEF3F8;
+    --border: #DCE3EC;
+    --border-subtle: #E8EDF3;
+    --sidebar: #081A2B;
+    --navy-primary: #0B1F33;
+    --navy-secondary: #12395A;
+    --blue-brand: #1769E0;
+    --blue-bright: #2F80ED;
+    --success: #16845B;
+    --success-bg: #EAF7F1;
+    --warning: #C98200;
+    --warning-bg: #FFF5DD;
+    --danger: #C63D3D;
+    --danger-bg: #FDEEEE;
+    --info: #2563A6;
+    --info-bg: #EDF5FF;
+    --text-primary: #102033;
+    --text-secondary: #536274;
+    --text-muted: #7C8998;
+    --text-disabled: #AAB4C0;
+    
+    --motion-fast: 120ms;
+    --motion-normal: 200ms;
+    --motion-slow: 350ms;
+    --motion-emphasis: 500ms;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Page Entry Animations */
+.page-entry {
+  animation: pageFadeIn 220ms ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle Ambient Technical Grid for Login */
+.bg-ambient-grid {
+  background-image: 
+    linear-gradient(to right, rgba(23, 105, 224, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(23, 105, 224, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  animation: gridMove 25s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { background-position: 0 0; }
+  100% { background-position: 32px 32px; }
+}
+
+/* Pulse Dot Animation for Live Status */
+.pulse-dot {
+  animation: pulseDot 2.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.15); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
