@@ -179,10 +179,10 @@ def get_system_health(db: Session = Depends(get_db)):
     # ---------------------------------------------------------
     try:
         active_rules = (
-            db.query(Rule)
-            .filter(Rule.is_active.is_(True))
-            .count()
-        )
+    db.query(Rule)
+    .filter(Rule.status == "ACTIVE")
+    .count()
+)
 
         rule_status = (
             "Operational"
